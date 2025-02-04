@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_newsinformation,access_newsinformation,model_newsinformation_newsinformation,,1,1,1,1
+access_userinformation,access_userinformation,model_userinformation_userinformation,,1,1,1,1
+access_commentinformation,access_commentinformation,model_commentinformation_commentinformation,,1,1,0,1
+access_categoriesinformation,access_categoriesinformation,model_categoriesinformation_categoriesinformation,,1,1,1,1

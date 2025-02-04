@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <record id="action_comment" model="ir.actions.act_window">
+            <field name="name">Comment</field>
+            <field name="res_model">commentinformation.commentinformation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Edit a comment
+            </p><p>
+                Edit comment, register payments and keep track of the discussions with your customers.
+            </p>
+        </field>
+        </record>
+        <menuitem id="menu_comment"
+                  name="Comment"
+                  parent="news.menu_news_root"
+                  action="action_comment"
+                  sequence="10"/>
+        <record id="comment_information_list_view" model="ir.ui.view">
+            <field name="name">Comment Information list</field>
+            <field name="model">commentinformation.commentinformation</field>
+            <field name="arch" type="xml">
+                <tree delete="1" multi_edit="1" string="Chart of comment"  open_form_view="True">
+                            <field name="id" optional="show"/>
+                            <field name="content" optional="show"/>
+                            <field name="new_id" optional="show"/>
+                            <field name="timestamps" optional="show"/>
+                            <field name="user_id" optional="show"/>
+
+                </tree>
+        </field>
+
+        </record>
+
+        <!-- Định nghĩa form view -->
+        <record id="comment_information_form_view" model="ir.ui.view">
+            <field name="name">Comment Information form</field>
+            <field name="model">commentinformation.commentinformation</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="set_cmt_through" string="Duyệt Bình Luận" type="object"/>
+                        <button name="set_cmt_not_through" string="Bỏ duyệt" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="Đã duyệt, Chưa duyệt" nolabel="1" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="timestamps"/>
+                            <field name="content"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

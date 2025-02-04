@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="action_user" model="ir.actions.act_window">
+            <field name="name">User</field>
+            <field name="res_model">userinformation.userinformation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a user
+            </p><p>
+                Add a user, register payments and keep track of the discussions with your customers.
+            </p>
+        </field>
+        </record>
+        <menuitem id="menu_user"
+                  name="User"
+                  parent="news.menu_news_root"
+                  action="action_user"
+                  sequence="10"/>
+        <record id="user_information_list_view" model="ir.ui.view">
+            <field name="name">User Information list</field>
+            <field name="model">userinformation.userinformation</field>
+            <field name="arch" type="xml">
+                <tree delete="1" multi_edit="1" string="Chart of user"  open_form_view="True">
+                        <header>
+                            <button name="print_all_user_report"
+                                type="object"
+                                string="Print Report"
+                                display="always"
+                                class="btn-primary"
+                        />
+                        </header>
+                            <field name="id" optional="show"/>
+                            <field name="userName" optional="show"/>
+                            <field name="email" optional="show"/>
+                            <field name="password" optional="show"/>
+                            <field name="url_img" optional="show"/>
+                </tree>
+        </field>
+
+        </record>
+
+        <!-- Định nghĩa form view -->
+        <record id="user_information_form_view" model="ir.ui.view">
+            <field name="name">User Information form</field>
+            <field name="model">userinformation.userinformation</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+                            <button name="print_user_report"
+                                type="object"
+                                string="Print Report"
+                                class="btn-primary"
+                        />
+                        </header>
+                        <group>
+                            <field name="id" optional="show" readonly="1"/>
+                            <field name="userName" optional="show"/>
+                            <field name="email" optional="show"/>
+                            <field name="password" optional="show"/>
+                            <field name="url_img" optional="show"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+<template id="user_information_list_view1">
+    <t t-call="web.html_container">
+
+        <main>
+            <h1>User Information Report</h1>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="docs" t-as="doc"/>
+                    <tr>
+                        <td><t t-esc="doc.userName"/></td>
+                        <td><t t-esc="doc.email"/></td>
+                        <td><t t-esc="doc.password"/></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </t>
+</template>
+
+       <template id="user_information_list_view2">
+    <t t-call="web.external_layout">
+        <div class="page">
+            <main>
+                <h1>User Information Report</h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <td><t t-esc="doc.id"/></td>
+                                <td><t t-esc="doc.userName"/></td>
+                                <td><t t-esc="doc.email"/></td>
+                                <td><t t-esc="doc.password"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </t>
+</template>
+
+
+
+
+    </data>
+     <record  id="action_report_user" model="ir.actions.report">
+        <field name="name">User Report</field>
+        <field name="model">userinformation.userinformation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">news.user_information_list_view1</field>
+         <field name="print_report_name">'User'</field>
+    </record>
+
+     <record  id="action_report_user_all" model="ir.actions.report">
+        <field name="name">User Report All</field>
+        <field name="model">userinformation.userinformation</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">news.user_information_list_view2</field>
+         <field name="print_report_name">'User All'</field>
+    </record>
+</odoo>

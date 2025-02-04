@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- Định nghĩa hành động trước khi tham chiếu trong menu -->
+        <record id="action_news_articles" model="ir.actions.act_window">
+            <field name="name">News Articles</field>
+            <field name="res_model">newsinformation.newsinformation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a customer invoice
+            </p><p>
+                Create invoices, register payments and keep track of the discussions with your customers.
+            </p>
+        </field>
+        </record>
+
+        <!-- Định nghĩa menu -->
+        <menuitem id="menu_news_root"
+                  name="News"
+                  action="action_news_articles"
+                  sequence="10"/>
+
+        <menuitem id="menu_news_articles"
+                  name="Articles"
+                  parent="menu_news_root"
+                  action="action_news_articles"
+                  sequence="20"/>
+
+        <menuitem id="menu_news_categories"
+                  name="Categories"
+                  parent="menu_news_root"
+                  sequence="30"/>
+
+        <record id="news_information_list_view" model="ir.ui.view">
+            <field name="name">News Information list</field>
+            <field name="model">newsinformation.newsinformation</field>
+            <field name="arch" type="xml">
+                <tree delete="1" multi_edit="1" string="Chart of news"  open_form_view="True">
+                    <field name="id" column_invisible="False"/>
+                    <field name="title" optional="show"/>
+                    <field name="content" optional="show"/>
+                    <field name="url_image" optional="show"/>
+                    <field name="id_category" optional="show"/>
+                    <field name="create_date" optional="show"/>
+                    <field name="comment_count" optional="show"/>
+                </tree>
+            </field>
+
+        </record>
+
+
+     <record id="news_information_form_view" model="ir.ui.view">
+    <field name="name">News Information form</field>
+    <field name="model">newsinformation.newsinformation</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+<!--                    <field name="id_user" default="2" readonly="1"/>-->
+                    <field name="title"/>
+                    <field name="content"/>
+                    <field name="url_image" optional="show"/>
+                </group>
+                <!-- Group for category -->
+                <group>
+                    <field name="id_category" widget="many2one"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+    </data>
+</odoo>

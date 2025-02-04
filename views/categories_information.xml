@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <record id="action_categories" model="ir.actions.act_window">
+            <field name="name">Categories</field>
+            <field name="res_model">categoriesinformation.categoriesinformation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a categories
+            </p><p>
+                Add a categories, register payments and keep track of the discussions with your customers.
+            </p>
+        </field>
+        </record>
+        <menuitem id="menu_categories"
+                  name="Categories"
+                  parent="news.menu_news_root"
+                  action="action_categories"
+                  sequence="10"/>
+        <record id="categories_information_list_view" model="ir.ui.view">
+            <field name="name">Categories Information list</field>
+            <field name="model">categoriesinformation.categoriesinformation</field>
+            <field name="arch" type="xml">
+                <tree delete="1" multi_edit="1" string="Chart of comment"  open_form_view="True">
+                            <field name="id" optional="show"/>
+                            <field name="cate_name" optional="show"/>
+
+                </tree>
+        </field>
+
+        </record>
+
+        <!-- Định nghĩa form view -->
+        <record id="categories_information_form_view" model="ir.ui.view">
+            <field name="name">Categories Information form</field>
+            <field name="model">categoriesinformation.categoriesinformation</field>
+
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="id"/>
+                            <field name="cate_name"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

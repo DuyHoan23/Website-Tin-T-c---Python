@@ -1,0 +1,44 @@
+<odoo>
+    <template id="registration_form" name="Registration Form">
+        <t t-call="website.layout">
+            <div class="container mt16">
+                <h1>Đăng Ký Tài Khoản</h1>
+                <form action="/submit_registration" method="post">
+                    <t t-esc="csrf_token"/>
+                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="form-group">
+                        <label for="name">Tên</label>
+                        <input type="text" name="userName" id="userName" class="form-control" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mật khẩu</label>
+                        <input type="password" name="password" id="password" class="form-control" required="required"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Đăng Ký</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="registration_success" name="Registration Success">
+        <t t-call="website.layout">
+            <div class="container mt16">
+                <h1>Chúc Mừng, Đăng Ký Thành Công!</h1>
+                <p>Bạn đã đăng ký thành công. Hãy kiểm tra email để kích hoạt tài khoản của bạn.</p>
+            </div>
+        </t>
+    </template>
+
+    <template id="registration_failure" name="Registration Failure">
+        <t t-call="website.layout">
+            <div class="container mt16">
+                <h1>Đăng Ký Thất Bại</h1>
+                <p t-if="error"><strong class="text-danger"><t t-esc="error"/></strong></p>
+            </div>
+        </t>
+    </template>
+</odoo>
